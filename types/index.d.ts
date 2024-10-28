@@ -15,7 +15,6 @@ declare type SignUpParams = {
     state?: string; // ? makes them optional
     postalCode?: string; // ? makes them optional
     dateOfBirth?: string; // ? makes them optional
-    ssn?: string; // ? makes them optional
     email: string;
     password: string;
 };
