@@ -21,6 +21,7 @@ import { authFormSchema } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { signIn, signUp } from "@/lib/actions/user.actions";
+import AkahuLink from "./AkahuLink";
 
 const AuthForm = ({ type }: { type: string }) => {
     const router = useRouter();
@@ -32,6 +33,7 @@ const AuthForm = ({ type }: { type: string }) => {
             password: "",
         },
     });
+
     const [user, setUser] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -96,7 +98,9 @@ const AuthForm = ({ type }: { type: string }) => {
                 </div>
             </header>
             {user ? (
-                <div> AKAHU FORM </div>
+                <div className="flex flex-col gap-4">
+                    <AkahuLink user={user} variant="primary" />
+                </div>
             ) : (
                 <>
                     <Form {...form}>
