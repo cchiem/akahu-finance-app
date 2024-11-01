@@ -14,7 +14,6 @@ const akahu = new AkahuClient({
     appToken: appTokenEnv,
 });
 
-const AKAHU_USER_TOKEN = process.env.AKAHU_USER_TOKEN;
 const akahuOAuthRedirectUri = process.env.NEXT_PUBLIC_SITE_URL;
 if (!akahuOAuthRedirectUri) {
     throw new Error("Missing app token");

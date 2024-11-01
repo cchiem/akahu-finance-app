@@ -7,6 +7,7 @@ import { getLoggedInUser } from "@/lib/actions/user.actions";
 
 const Home = async () => {
     const loggedIn = await getLoggedInUser();
+
     return (
         <section className="home">
             <div className="home-content">
@@ -14,7 +15,7 @@ const Home = async () => {
                     <HeaderBox
                         type="greeting"
                         title="Welcome"
-                        user="Guest"
+                        user={loggedIn?.firstName || "Guest"}
                         subtext="Access and manage your accounts and transactions effectively"
                     />
 

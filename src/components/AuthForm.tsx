@@ -6,22 +6,13 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
-import {
-    Form,
-    FormControl,
-    FormDescription,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import { Form } from "@/components/ui/form";
 import CustomInput from "./CustomInput";
-import { authFormSchema } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { signIn, signUp } from "@/lib/actions/user.actions";
 import AkahuLink from "./AkahuLink";
+import { authFormSchema } from "@/lib/utils";
 
 const AuthForm = ({ type }: { type: string }) => {
     const router = useRouter();
@@ -33,7 +24,6 @@ const AuthForm = ({ type }: { type: string }) => {
             password: "",
         },
     });
-
     const [user, setUser] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -47,6 +37,7 @@ const AuthForm = ({ type }: { type: string }) => {
             if (type === "sign-up") {
                 const newUser = await signUp(data);
                 setUser(newUser);
+                console.log(newUser);
             }
 
             if (type === "sign-in") {
@@ -54,8 +45,10 @@ const AuthForm = ({ type }: { type: string }) => {
                     email: data.email,
                     password: data.password,
                 });
-                console.log("Sign-in response:", response); // Check the response here
-                if (response) router.push("/");
+
+                if (response) {
+                    router.push("/");
+                }
             }
         } catch (error) {
             console.log(error);
