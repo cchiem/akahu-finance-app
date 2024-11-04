@@ -26,6 +26,7 @@ const AuthForm = ({ type }: { type: string }) => {
     });
     const [user, setUser] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState("");
 
     const onSubmit = async (data: z.infer<typeof formSchema>) => {
         // Do something with the form values.
@@ -46,8 +47,14 @@ const AuthForm = ({ type }: { type: string }) => {
                     password: data.password,
                 });
 
+                console.log(response);
+
                 if (response) {
                     router.push("/");
+                } else {
+                    setError(
+                        "Invalid credentials. Please check the email and password."
+                    );
                 }
             }
         } catch (error) {
@@ -59,6 +66,27 @@ const AuthForm = ({ type }: { type: string }) => {
 
     return (
         <section className="auth-form">
+            {error && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+                    <div className="max-w-sm p-6 bg-white rounded-lg shadow-lg">
+                        <h2 className="text-xl font-semibold text-red-600">
+                            Authentication Error
+                        </h2>
+                        <p className="mt-2 text-gray-700">
+                            Invalid credentials. Please check your email and
+                            password.
+                        </p>
+                        <div className="flex justify-end mt-4">
+                            <button
+                                onClick={() => setError("")}
+                                className="px-4 py-2 text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none"
+                            >
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
             <header className="flex flex-col gap-5 md:gap-8">
                 <Link
                     href="/"
