@@ -37,8 +37,11 @@ const AuthForm = ({ type }: { type: string }) => {
 
             if (type === "sign-up") {
                 const newUser = await signUp(data);
-                setUser(newUser);
-                console.log(newUser);
+                if (newUser) {
+                    setUser(newUser);
+                } else {
+                    setError("Email already exists. Please sign in.");
+                }
             }
 
             if (type === "sign-in") {
@@ -72,10 +75,7 @@ const AuthForm = ({ type }: { type: string }) => {
                         <h2 className="text-xl font-semibold text-red-600">
                             Authentication Error
                         </h2>
-                        <p className="mt-2 text-gray-700">
-                            Invalid credentials. Please check your email and
-                            password.
-                        </p>
+                        <p className="mt-2 text-gray-700">{error}</p>
                         <div className="flex justify-end mt-4">
                             <button
                                 onClick={() => setError("")}
