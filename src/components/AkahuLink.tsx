@@ -27,9 +27,11 @@ const AkahuLink = ({ user, variant }: AkahuLinkProps) => {
     return (
         <>
             {variant === "primary" ? (
-                <Link className="plaidlink-primary" href={authUrl}>
-                    Connect Bank
-                </Link>
+                <Button asChild>
+                    <Link className="plaidlink-primary" href={authUrl}>
+                        Connect Bank
+                    </Link>
+                </Button>
             ) : variant === "ghost" ? (
                 <Button>Connect Bank</Button>
             ) : (
