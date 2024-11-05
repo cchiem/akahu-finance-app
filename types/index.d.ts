@@ -143,7 +143,7 @@ declare interface CreditCardProps {
 }
 
 declare interface BankInfoProps {
-    account: Account;
+    account: any; // supposed to be Account
     appwriteItemId?: string;
     type: "full" | "card";
 }
@@ -216,7 +216,7 @@ declare interface FooterProps {
 declare interface RightSidebarProps {
     user: User;
     transactions: Transaction[];
-    banks: Bank[] & Account[];
+    banks: any[]; // temp for now
 }
 
 declare interface SiderbarProps {

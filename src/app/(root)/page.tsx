@@ -1,12 +1,21 @@
 import HeaderBox from "@/components/HeaderBox";
 import React from "react";
-
 import TotalBalanceBox from "@/components/TotalBalanceBox";
 import RightSidebar from "@/components/RightSidebar";
 import { getLoggedInUser } from "@/lib/actions/user.actions";
 
 const Home = async () => {
-    const loggedIn = await getLoggedInUser();
+    let loggedIn;
+    try {
+        loggedIn = await getLoggedInUser();
+    } catch (error) {
+        console.error("Error fetching logged-in user:", error);
+    }
+
+    const banks = [
+        { id: 1, currentBalance: 123.5 },
+        { id: 2, currentBalance: 123.5 },
+    ];
 
     return (
         <section className="home">
@@ -21,17 +30,21 @@ const Home = async () => {
 
                     <TotalBalanceBox
                         accounts={[]}
-                        totalBanks={1}
+                        totalBanks={banks.length}
                         totalCurrentBalance={1250.35}
                     />
                 </header>
-                RECENT TRANSACTIONS
+
+                <div className="recent-transactions">
+                    <h2>RECENT TRANSACTIONS</h2>
+                    {/* Transaction data can be mapped here if available */}
+                </div>
             </div>
 
             <RightSidebar
                 user={loggedIn}
-                transactions={[]}
-                banks={[{ currentBalance: 123.5 }, { currentBalance: 123.5 }]}
+                transactions={[]} // Replace with actual transaction data
+                banks={banks}
             />
         </section>
     );
