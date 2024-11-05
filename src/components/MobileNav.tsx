@@ -39,7 +39,7 @@ const MobileNav = ({ user }: MobileNavProps) => {
                             height={34}
                         />
                         <h1 className="text-26 font-ibm-plex-serif font-bold text-black-1">
-                            Akahu Finance
+                            Horizon Finance
                         </h1>
                     </Link>
 

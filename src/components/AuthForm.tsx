@@ -99,7 +99,7 @@ const AuthForm = ({ type }: { type: string }) => {
                         height={34}
                     />
                     <h1 className="text-26 font-ibm-plex-serif font-bold text-black-1">
-                        Akahu Finance
+                        Horizon
                     </h1>
                 </Link>
 
