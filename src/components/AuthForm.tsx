@@ -39,6 +39,7 @@ const AuthForm = ({ type }: { type: string }) => {
                 const newUser = await signUp(data);
                 if (newUser) {
                     setUser(newUser);
+                    router.push("/");
                 } else {
                     setError("Email already exists. Please sign in.");
                 }
